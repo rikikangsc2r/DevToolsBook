@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Code, FileLock, Link as LinkIcon, Shuffle, TerminalSquare } from "lucide-react";
+import { Code, FileLock, Link as LinkIcon, Shuffle, TerminalSquare, Home } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 
 const navItems = [
+  { href: "/", label: "Beranda", icon: Home },
   { href: "/javascript-obfuscator", label: "JS Obfuscator", icon: FileLock },
   { href: "/html-formatter", label: "HTML Formatter", icon: Code },
   { href: "/url-encoder", label: "URL Encoder/Decoder", icon: LinkIcon },
