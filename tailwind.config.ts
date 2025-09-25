@@ -1,4 +1,5 @@
 import type {Config} from 'tailwindcss';
+const plugin = require('tailwindcss/plugin');
 
 export default {
   darkMode: ['class'],
@@ -78,12 +79,49 @@ export default {
             height: '0',
           },
         },
+        'float': {
+            '0%, 100%': { transform: 'translateY(0px)' },
+            '50%': { transform: 'translateY(-10px)' },
+        },
+        'rotate-3d': {
+            '0%': { transform: 'rotate3d(0, 0, 0, 0deg)' },
+            '100%': { transform: 'rotate3d(0.5, -0.866, 0, 15deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'float': 'float 6s ease-in-out infinite',
       },
+      textShadow: {
+        sm: '0 1px 2px var(--tw-shadow-color)',
+        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+        lg: '0 8px 16px var(--tw-shadow-color)',
+      },
+      transformStyle: {
+        '3d': 'preserve-3d',
+      }
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(function ({matchUtilities, theme}: {matchUtilities: any, theme: any}) {
+      matchUtilities(
+        {
+          'text-shadow': (value: any) => ({
+            textShadow: value,
+          }),
+        },
+        {values: theme('textShadow')}
+      );
+      matchUtilities(
+        {
+          'transform-style': (value: any) => ({
+            transformStyle: value,
+          }),
+        },
+        {values: theme('transformStyle')}
+      )
+    }),
+  ],
 } satisfies Config;

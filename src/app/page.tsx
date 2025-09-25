@@ -33,10 +33,10 @@ export default function Home() {
               <Button variant={language === 'id' ? 'default' : 'outline'} onClick={() => setLanguage('id')}>Indonesia</Button>
               <Button variant={language === 'en' ? 'default' : 'outline'} onClick={() => setLanguage('en')}>English</Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: '1000px' }}>
               {tools.map((tool) => (
-                <Link href={tool.href} key={tool.href} className="block group">
-                  <Card className="h-full hover:bg-accent/50 transition-colors">
+                <Link href={tool.href} key={tool.href} className="block group transition-transform duration-300 ease-in-out hover:-translate-y-2">
+                  <Card className="h-full group-hover:shadow-2xl group-hover:shadow-primary/20 transition-all duration-300 ease-in-out group-hover:rotate-x-6 group-hover:rotate-y-[-6deg] group-hover:scale-105">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-lg font-semibold text-primary">{tool.label}</CardTitle>
                       <tool.icon className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors" />
