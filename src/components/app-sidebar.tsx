@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const navItems = [
+export const navItems = [
   { href: "/", label: "Beranda", icon: Home },
   { href: "/javascript-obfuscator", label: "JS Obfuscator", icon: FileLock },
   { href: "/html-formatter", label: "HTML Formatter", icon: Code },
