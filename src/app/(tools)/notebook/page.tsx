@@ -177,9 +177,9 @@ export default function NotebookPage() {
       description={t('tool_notebook_description')}
       className="flex-1 flex flex-col"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 flex-1">
-        <div className="md:col-span-1 bg-muted/30 rounded-lg p-2 flex flex-col">
-            <Button onClick={createNewDraft} className="mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 flex-1 min-h-0">
+        <div className="md:col-span-1 bg-muted/30 rounded-lg p-2 flex flex-col min-h-0">
+            <Button onClick={createNewDraft} className="mb-4 shrink-0">
                 <Plus className="mr-2"/>
                 {t('notebook_new_draft_button')}
             </Button>
@@ -192,7 +192,7 @@ export default function NotebookPage() {
                     >
                        <div className="flex justify-between items-start gap-2">
                             {editingTitleId === draft.id ? (
-                                <div className="flex-grow flex items-center gap-2">
+                                <div className="flex-grow flex items-center gap-1">
                                     <Input value={tempTitle} onChange={e => setTempTitle(e.target.value)} className="h-8"/>
                                     <Button size="icon" variant="ghost" onClick={() => saveTitle(draft.id)}><Check className="h-4 w-4"/></Button>
                                     <Button size="icon" variant="ghost" onClick={cancelEditingTitle}><X className="h-4 w-4"/></Button>
@@ -270,5 +270,3 @@ export default function NotebookPage() {
     </ToolContainer>
   );
 }
-
-    
