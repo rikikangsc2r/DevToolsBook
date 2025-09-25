@@ -165,7 +165,17 @@ export default function NotebookPage() {
   
   const shareDraft = () => {
     if (!blobUrl) return;
-    navigator.clipboard.writeText(blobUrl);
+    const blobId = getBlobId(blobUrl);
+    if (!blobId) {
+       toast({
+        variant: 'destructive',
+        title: t('notebook_share_error_title'),
+        description: t('notebook_share_error_desc'),
+      });
+      return;
+    }
+    const shareableUrl = `${window.location.origin}/notebook/view/${blobId}`;
+    navigator.clipboard.writeText(shareableUrl);
     toast({
       title: t('notebook_share_success_title'),
       description: t('notebook_share_success_desc'),
@@ -229,18 +239,18 @@ export default function NotebookPage() {
                                     <Button size="icon" variant="ghost" onClick={cancelEditingTitle}><X className="h-4 w-4"/></Button>
                                 </div>
                             ) : (
-                                <>
-                                    <div className="flex-grow min-w-0">
-                                         <div className="flex items-center gap-2">
-                                            <FileText className="h-4 w-4 text-primary shrink-0"/>
-                                            <p className="font-semibold truncate flex-shrink min-w-0">{draft.title}</p>
-                                         </div>
-                                         <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
-                                    </div>
-                                    <div className="flex-shrink-0">
-                                        <Button size="icon" variant="ghost" onClick={(e) => {e.stopPropagation(); startEditingTitle(draft);}}><Edit className="h-4 w-4"/></Button>
-                                    </div>
-                                </>
+                                <div className="flex-grow min-w-0">
+                                     <div className="flex items-center gap-2">
+                                        <FileText className="h-4 w-4 text-primary shrink-0"/>
+                                        <p className="font-semibold truncate flex-shrink min-w-0">{draft.title}</p>
+                                     </div>
+                                     <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
+                                </div>
+                            )}
+                            {editingTitleId !== draft.id && (
+                                <div className="flex-shrink-0">
+                                    <Button size="icon" variant="ghost" onClick={(e) => {e.stopPropagation(); startEditingTitle(draft);}}><Edit className="h-4 w-4"/></Button>
+                                </div>
                             )}
                        </div>
                     </div>

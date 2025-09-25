@@ -121,7 +121,17 @@ export const translations = {
   "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." },
   "notebook_share_button": { "en": "Share", "id": "Bagikan" },
   "notebook_share_success_title": { "en": "URL Copied!", "id": "URL Disalin!" },
-  "notebook_share_success_desc": { "en": "The notebook URL has been copied to your clipboard.", "id": "URL buku catatan telah disalin ke papan klip Anda." },
+  "notebook_share_success_desc": { "en": "The shareable notebook URL has been copied to your clipboard.", "id": "URL buku catatan yang dapat dibagikan telah disalin ke papan klip Anda." },
+  "notebook_share_error_title": { "en": "Share Error", "id": "Galat Berbagi" },
+  "notebook_share_error_desc": { "en": "Could not generate a shareable URL.", "id": "Tidak dapat membuat URL yang dapat dibagikan." },
+
+  // Notebook View Page
+  "notebook_view_title": { "en": "Shared Notebook", "id": "Buku Catatan Bersama" },
+  "notebook_view_description": { "en": "A read-only view of a shared notebook.", "id": "Tampilan hanya-baca dari buku catatan yang dibagikan." },
+  "notebook_view_load_error_title": { "en": "Error Loading Notebook", "id": "Galat Memuat Buku Catatan" },
+  "notebook_view_load_error_desc": { "en": "The requested notebook could not be found or has been deleted.", "id": "Buku catatan yang diminta tidak dapat ditemukan atau telah dihapus." },
+  "notebook_view_empty": { "en": "This notebook is empty.", "id": "Buku catatan ini kosong." },
+  "notebook_view_back_button": { "en": "Back to Editor", "id": "Kembali ke Editor" },
 
   // Code Editor Page
   "code_editor_run_button": { "en": "Run", "id": "Jalankan" },
