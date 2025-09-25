@@ -190,7 +190,7 @@ export default function NotebookPage() {
                         className={`p-3 rounded-md cursor-pointer mb-2 transition-colors ${activeDraftId === draft.id ? 'bg-primary/20' : 'hover:bg-muted'}`}
                         onClick={() => setActiveDraftId(draft.id)}
                     >
-                       <div className="flex justify-between items-center">
+                       <div className="flex justify-between items-start gap-2">
                             {editingTitleId === draft.id ? (
                                 <div className="flex-grow flex items-center gap-2">
                                     <Input value={tempTitle} onChange={e => setTempTitle(e.target.value)} className="h-8"/>
@@ -198,14 +198,20 @@ export default function NotebookPage() {
                                     <Button size="icon" variant="ghost" onClick={cancelEditingTitle}><X className="h-4 w-4"/></Button>
                                 </div>
                             ) : (
-                                <div className="flex-grow flex items-center gap-2 min-w-0">
-                                     <FileText className="h-4 w-4 text-primary shrink-0"/>
-                                     <span className="font-semibold truncate flex-1 min-w-0">{draft.title}</span>
-                                     <Button size="icon" variant="ghost" onClick={() => startEditingTitle(draft)}><Edit className="h-4 w-4"/></Button>
-                                </div>
+                                <>
+                                    <div className="flex-grow min-w-0">
+                                         <div className="flex items-center gap-2">
+                                            <FileText className="h-4 w-4 text-primary shrink-0"/>
+                                            <span className="font-semibold truncate flex-1 min-w-0">{draft.title}</span>
+                                         </div>
+                                         <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
+                                    </div>
+                                    <div className="flex-shrink-0">
+                                        <Button size="icon" variant="ghost" onClick={(e) => {e.stopPropagation(); startEditingTitle(draft);}}><Edit className="h-4 w-4"/></Button>
+                                    </div>
+                                </>
                             )}
                        </div>
-                       <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
                     </div>
                 ))}
             </ScrollArea>
@@ -264,3 +270,5 @@ export default function NotebookPage() {
     </ToolContainer>
   );
 }
+
+    
