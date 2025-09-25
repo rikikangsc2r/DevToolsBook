@@ -3,7 +3,7 @@
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ToolContainer } from "@/components/tool-container";
-import { Code, FileLock, Link as LinkIcon, Shuffle, Book } from "lucide-react";
+import { Code, FileLock, Link as LinkIcon, Shuffle, Book, Heart } from "lucide-react";
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
@@ -18,6 +18,7 @@ export default function Home() {
     { href: "/html-formatter", label: t('tool_html_formatter_label'), description: t('tool_html_formatter_description'), icon: Code },
     { href: "/url-encoder", label: t('tool_url_encoder_label'), description: t('tool_url_encoder_description'), icon: LinkIcon },
     { href: "/base64-converter", label: t('tool_base64_converter_label'), description: t('tool_base64_converter_description'), icon: Shuffle },
+    { href: "/tqto", label: t('tool_tqto_label'), description: t('tool_tqto_description'), icon: Heart },
   ];
 
   return (

@@ -24,6 +24,7 @@ export const translations = {
   "sidebar_url_encoder": { "en": "URL Encoder/Decoder", "id": "URL Encoder/Decoder" },
   "sidebar_base64_converter": { "en": "Base64 Converter", "id": "Base64 Converter" },
   "sidebar_notebook": { "en": "Notebook", "id": "Buku Catatan" },
+  "sidebar_tqto": { "en": "TQTO", "id": "TQTO" },
 
   // Home Page
   "home_welcome_title": { "en": "Welcome to DevToolbox", "id": "Selamat Datang di DevToolbox" },
@@ -40,6 +41,8 @@ export const translations = {
   "tool_base64_converter_description": { "en": "Encode and decode data using Base64, with UTF-8 support.", "id": "Encode dan decode data menggunakan Base64, dengan dukungan UTF-8." },
   "tool_notebook_label": { "en": "Notebook", "id": "Buku Catatan" },
   "tool_notebook_description": { "en": "A simple notebook to jot down notes, saved online.", "id": "Buku catatan sederhana untuk mencatat, disimpan secara online." },
+  "tool_tqto_label": { "en": "TQTO", "id": "TQTO" },
+  "tool_tqto_description": { "en": "A special thanks to the one who made this possible.", "id": "Terima kasih khusus untuk yang telah mewujudkan ini." },
 
   // Base64 Converter Page
   "base64_input_placeholder": { "en": "Enter data to convert...", "id": "Masukkan data untuk dikonversi..." },
@@ -112,7 +115,11 @@ export const translations = {
   "notebook_delete_confirm_title": { "en": "Are you sure?", "id": "Apakah Anda yakin?" },
   "notebook_delete_confirm_desc": { "en": "This action cannot be undone. This will permanently delete the current draft.", "id": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus draf saat ini secara permanen." },
   "notebook_no_draft_selected": { "en": "Select a draft to start editing or create a new one.", "id": "Pilih draf untuk mulai mengedit atau buat yang baru." },
-  "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." }
+  "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." },
+
+  // TQTO Page
+  "tqto_message_line1": { "en": "This application was lovingly crafted for", "id": "Aplikasi ini dibuat dengan penuh cinta untuk" },
+  "tqto_message_line2": { "en": "Thank you for making this possible.", "id": "Terima kasih telah mewujudkan ini." }
 };
 
 export type TranslationKey = keyof typeof translations;
