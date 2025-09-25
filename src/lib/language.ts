@@ -119,6 +119,9 @@ export const translations = {
   "notebook_delete_confirm_desc": { "en": "This action cannot be undone. This will permanently delete the current draft.", "id": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus draf saat ini secara permanen." },
   "notebook_no_draft_selected": { "en": "Select a draft to start editing or create a new one.", "id": "Pilih draf untuk mulai mengedit atau buat yang baru." },
   "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." },
+  "notebook_share_button": { "en": "Share", "id": "Bagikan" },
+  "notebook_share_success_title": { "en": "URL Copied!", "id": "URL Disalin!" },
+  "notebook_share_success_desc": { "en": "The notebook URL has been copied to your clipboard.", "id": "URL buku catatan telah disalin ke papan klip Anda." },
 
   // Code Editor Page
   "code_editor_run_button": { "en": "Run", "id": "Jalankan" },

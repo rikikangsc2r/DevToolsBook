@@ -7,7 +7,7 @@ import { ToolContainer } from "@/components/tool-container";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
 import { createJsonBlob, getJsonBlob, updateJsonBlob } from "@/lib/jsonblob";
-import { Save, Loader, AlertTriangle, Plus, Trash2, Download, FileText, X, Edit, Check } from "lucide-react";
+import { Save, Loader, AlertTriangle, Plus, Trash2, Download, FileText, X, Edit, Check, Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
@@ -33,7 +33,7 @@ export default function NotebookPage() {
   const { toast } = useToast();
   const { t } = useLanguage();
 
-  const getBlobId = (url: string | null): string | null => {
+  const getBlobId = useCallback((url: string | null): string | null => {
     if (!url) return null;
     try {
       const urlParts = new URL(url);
@@ -42,7 +42,7 @@ export default function NotebookPage() {
     } catch {
       return null;
     }
-  };
+  }, []);
 
   const activeDraft = useMemo(() => drafts.find(d => d.id === activeDraftId), [drafts, activeDraftId]);
 
@@ -57,6 +57,10 @@ export default function NotebookPage() {
         setDrafts(loadedDrafts);
         if (loadedDrafts.length > 0) {
           setActiveDraftId(loadedDrafts[0].id);
+        } else {
+           const initialDraft: Draft = { id: crypto.randomUUID(), title: t('notebook_initial_draft_title'), content: t('notebook_initial_content'), updatedAt: new Date().toISOString() };
+           setDrafts([initialDraft]);
+           setActiveDraftId(initialDraft.id);
         }
         setBlobUrl(storedUrl);
         setStatus("idle");
@@ -82,19 +86,37 @@ export default function NotebookPage() {
           title: t('notebook_load_error_title'),
           description: t('notebook_load_error_desc'),
       });
+      // If loading fails, create a new one
+      localStorage.removeItem(JSONBLOB_URL_KEY);
+       const initialDraft: Draft = { id: crypto.randomUUID(), title: t('notebook_initial_draft_title'), content: t('notebook_initial_content'), updatedAt: new Date().toISOString() };
+       const newBlob = await createJsonBlob({ drafts: [initialDraft] });
+        const newUrl = newBlob.headers.get("Location");
+        if (newUrl) {
+          localStorage.setItem(JSONBLOB_URL_KEY, newUrl);
+          setBlobUrl(newUrl);
+          setDrafts([initialDraft]);
+          setActiveDraftId(initialDraft.id);
+          setStatus("idle");
+          toast({
+            title: t('notebook_recreated_title'),
+            description: t('notebook_recreated_desc'),
+          });
+        }
     }
-  }, [t, toast]);
+  }, [t, toast, getBlobId]);
 
 
   useEffect(() => {
     initialize();
   }, [initialize]);
-
+  
   const handleSave = useCallback(async () => {
     if (!blobUrl || !activeDraft) return;
     setStatus("saving");
     try {
-      await updateJsonBlob(getBlobId(blobUrl)!, { drafts });
+      const blobId = getBlobId(blobUrl);
+      if(!blobId) throw new Error("Invalid Blob URL");
+      await updateJsonBlob(blobId, { drafts });
       toast({
         title: t('notebook_save_success_title'),
         description: t('notebook_save_success_desc'),
@@ -108,7 +130,7 @@ export default function NotebookPage() {
         description: t('notebook_save_error_desc'),
       });
     }
-  }, [blobUrl, activeDraft, drafts, t, toast]);
+  }, [blobUrl, activeDraft, drafts, t, toast, getBlobId]);
 
   const createNewDraft = () => {
     const newDraft: Draft = {
@@ -141,6 +163,15 @@ export default function NotebookPage() {
     document.body.removeChild(link);
   };
   
+  const shareDraft = () => {
+    if (!blobUrl) return;
+    navigator.clipboard.writeText(blobUrl);
+    toast({
+      title: t('notebook_share_success_title'),
+      description: t('notebook_share_success_desc'),
+    });
+  };
+
   const updateActiveDraftContent = (content: string) => {
     if (!activeDraftId) return;
     const updatedDrafts = drafts.map(d =>
@@ -183,7 +214,7 @@ export default function NotebookPage() {
                 <Plus className="mr-2"/>
                 {t('notebook_new_draft_button')}
             </Button>
-            <ScrollArea className="flex-grow">
+            <ScrollArea className="flex-grow pr-3">
                 {drafts.sort((a,b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()).map(draft => (
                     <div
                         key={draft.id}
@@ -202,7 +233,7 @@ export default function NotebookPage() {
                                     <div className="flex-grow min-w-0">
                                          <div className="flex items-center gap-2">
                                             <FileText className="h-4 w-4 text-primary shrink-0"/>
-                                            <span className="font-semibold truncate">{draft.title}</span>
+                                            <p className="font-semibold truncate flex-shrink min-w-0">{draft.title}</p>
                                          </div>
                                          <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
                                     </div>
@@ -231,6 +262,9 @@ export default function NotebookPage() {
                     {status === "loading" && <span className="text-sm text-muted-foreground">{t('notebook_loading')}</span>}
                     {status === "error" && <span className="text-sm text-destructive">{t('notebook_error_state')}</span>}
                     
+                    <Button variant="outline" onClick={shareDraft} disabled={!blobUrl || status !== 'idle'}>
+                        <Share2/> {t('notebook_share_button')}
+                    </Button>
                     <Button variant="outline" onClick={downloadDraft} disabled={!activeDraft || status !== 'idle'}>
                         <Download/> {t('notebook_download_button')}
                     </Button>
@@ -261,8 +295,14 @@ export default function NotebookPage() {
                 </>
             ) : (
                 <div className="flex flex-col items-center justify-center h-full bg-muted/30 rounded-lg">
-                    <FileText size={48} className="text-muted-foreground mb-4"/>
-                    <p className="text-muted-foreground">{t('notebook_no_draft_selected')}</p>
+                    {status === 'loading' ? (
+                        <Loader className="animate-spin h-8 w-8 text-primary" />
+                    ) : (
+                        <>
+                            <FileText size={48} className="text-muted-foreground mb-4"/>
+                            <p className="text-muted-foreground">{t('notebook_no_draft_selected')}</p>
+                        </>
+                    )}
                 </div>
             )}
         </div>
