@@ -11,6 +11,7 @@ export const translations = {
   "common_format": { "en": "Format", "id": "Format" },
   "common_validate": { "en": "Validate", "id": "Validasi" },
   "common_none": { "en": "None", "id": "Tidak ada" },
+  "common_cancel": { "en": "Cancel", "id": "Batal" },
 
   // Header
   "header_open_menu": { "en": "Open Menu", "id": "Buka Menu" },
@@ -91,6 +92,8 @@ export const translations = {
   // Notebook Page
   "notebook_placeholder": { "en": "Start typing your notes here...", "id": "Mulai ketik catatan Anda di sini..." },
   "notebook_initial_content": { "en": "# My Notebook\n\nThis is your personal notebook. Your notes are saved automatically online.", "id": "# Buku Catatan Saya\n\nIni adalah buku catatan pribadi Anda. Catatan Anda disimpan secara otomatis secara online." },
+  "notebook_initial_draft_title": { "en": "My First Note", "id": "Catatan Pertama Saya" },
+  "notebook_new_draft_title": { "en": "New Draft", "id": "Draf Baru" },
   "notebook_save_button": { "en": "Save", "id": "Simpan" },
   "notebook_loading": { "en": "Loading notebook...", "id": "Memuat buku catatan..." },
   "notebook_error_state": { "en": "Connection error", "id": "Galat koneksi" },
@@ -102,7 +105,14 @@ export const translations = {
   "notebook_load_error_desc": { "en": "Could not load or create a notebook.", "id": "Tidak dapat memuat atau membuat buku catatan." },
   "notebook_create_blob_error": { "en": "Failed to get location header from new blob", "id": "Gagal mendapatkan header lokasi dari blob baru" },
   "notebook_recreated_title": { "en": "Notebook Restored", "id": "Buku Catatan Dipulihkan" },
-  "notebook_recreated_desc": { "en": "Your previous notebook was invalid, so a new one was created.", "id": "Buku catatan Anda sebelumnya tidak valid, jadi yang baru telah dibuat." }
+  "notebook_recreated_desc": { "en": "Your previous notebook was invalid, so a new one was created.", "id": "Buku catatan Anda sebelumnya tidak valid, jadi yang baru telah dibuat." },
+  "notebook_new_draft_button": { "en": "New Draft", "id": "Draf Baru" },
+  "notebook_download_button": { "en": "Download", "id": "Unduh" },
+  "notebook_delete_button": { "en": "Delete", "id": "Hapus" },
+  "notebook_delete_confirm_title": { "en": "Are you sure?", "id": "Apakah Anda yakin?" },
+  "notebook_delete_confirm_desc": { "en": "This action cannot be undone. This will permanently delete the current draft.", "id": "Tindakan ini tidak dapat dibatalkan. Ini akan menghapus draf saat ini secara permanen." },
+  "notebook_no_draft_selected": { "en": "Select a draft to start editing or create a new one.", "id": "Pilih draf untuk mulai mengedit atau buat yang baru." },
+  "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." }
 };
 
 export type TranslationKey = keyof typeof translations;
