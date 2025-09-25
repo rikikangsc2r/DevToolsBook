@@ -175,8 +175,9 @@ export default function NotebookPage() {
     <ToolContainer
       title={t('tool_notebook_label')}
       description={t('tool_notebook_description')}
+      className="flex-1 flex flex-col"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 min-h-[60vh]">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 flex-1">
         <div className="md:col-span-1 bg-muted/30 rounded-lg p-2 flex flex-col">
             <Button onClick={createNewDraft} className="mb-4">
                 <Plus className="mr-2"/>
