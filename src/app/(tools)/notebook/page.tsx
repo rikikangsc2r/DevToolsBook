@@ -167,7 +167,7 @@ export default function NotebookPage() {
     document.body.removeChild(link);
   };
   
-  const shareDraft = () => {
+  const shareDraft = useCallback(() => {
     if (!blobUrl) return;
     const blobId = getBlobId(blobUrl);
     if (!blobId) {
@@ -184,7 +184,7 @@ export default function NotebookPage() {
       title: t('notebook_share_success_title'),
       description: t('notebook_share_success_desc'),
     });
-  };
+  }, [blobUrl, getBlobId, t, toast]);
 
   const updateActiveDraftContent = (content: string) => {
     if (!activeDraftId) return;
@@ -324,5 +324,3 @@ export default function NotebookPage() {
     </ToolContainer>
   );
 }
-
-    

@@ -212,7 +212,7 @@ export default function CodeEditorPage() {
     document.body.removeChild(link);
   };
   
-  const shareDraft = () => {
+  const shareDraft = useCallback(() => {
     if (!blobUrl || !activeDraftId) return;
     const blobId = getBlobId(blobUrl);
     if (!blobId) {
@@ -229,7 +229,7 @@ export default function CodeEditorPage() {
       title: t('notebook_share_success_title'),
       description: t('notebook_share_success_desc'),
     });
-  };
+  }, [blobUrl, activeDraftId, getBlobId, t, toast]);
 
   const updateActiveDraftCode = (language: 'html' | 'css' | 'js', code: string) => {
     if (!activeDraftId) return;
@@ -405,5 +405,3 @@ export default function CodeEditorPage() {
     </ToolContainer>
   );
 }
-
-    
