@@ -25,6 +25,7 @@ export const translations = {
   "sidebar_base64_converter": { "en": "Base64 Converter", "id": "Base64 Converter" },
   "sidebar_notebook": { "en": "Notebook", "id": "Buku Catatan" },
   "sidebar_tqto": { "en": "TQTO", "id": "TQTO" },
+  "sidebar_code_editor": { "en": "Code Editor", "id": "Editor Kode" },
 
   // Home Page
   "home_welcome_title": { "en": "Welcome to DevToolbox", "id": "Selamat Datang di DevToolbox" },
@@ -43,6 +44,8 @@ export const translations = {
   "tool_notebook_description": { "en": "A simple notebook to jot down notes, saved online.", "id": "Buku catatan sederhana untuk mencatat, disimpan secara online." },
   "tool_tqto_label": { "en": "TQTO", "id": "TQTO" },
   "tool_tqto_description": { "en": "A special thanks to the one who made this possible.", "id": "Terima kasih khusus untuk yang telah mewujudkan ini." },
+  "tool_code_editor_label": { "en": "Code Editor", "id": "Editor Kode" },
+  "tool_code_editor_description": { "en": "A simple HTML, CSS, and JS editor with live preview.", "id": "Editor HTML, CSS, dan JS sederhana dengan pratinjau langsung." },
 
   // Base64 Converter Page
   "base64_input_placeholder": { "en": "Enter data to convert...", "id": "Masukkan data untuk dikonversi..." },
@@ -117,6 +120,9 @@ export const translations = {
   "notebook_no_draft_selected": { "en": "Select a draft to start editing or create a new one.", "id": "Pilih draf untuk mulai mengedit atau buat yang baru." },
   "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." },
 
+  // Code Editor Page
+  "code_editor_run_button": { "en": "Run", "id": "Jalankan" },
+  
   // TQTO Page
   "tqto_message_line1": { "en": "This application was lovingly crafted for", "id": "Aplikasi ini dibuat dengan penuh cinta untuk" },
   "tqto_message_line2": { "en": "Thank you for making this possible.", "id": "Terima kasih telah mewujudkan ini." }

@@ -3,7 +3,7 @@
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ToolContainer } from "@/components/tool-container";
-import { Code, FileLock, Link as LinkIcon, Shuffle, Book, Heart } from "lucide-react";
+import { Code, FileLock, Link as LinkIcon, Shuffle, Book, Heart, PlaySquare } from "lucide-react";
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
@@ -16,6 +16,7 @@ export default function Home() {
     { href: "/notebook", label: t('tool_notebook_label'), description: t('tool_notebook_description'), icon: Book },
     { href: "/javascript-obfuscator", label: t('tool_js_obfuscator_label'), description: t('tool_js_obfuscator_description'), icon: FileLock },
     { href: "/html-formatter", label: t('tool_html_formatter_label'), description: t('tool_html_formatter_description'), icon: Code },
+    { href: "/code-editor", label: t('tool_code_editor_label'), description: t('tool_code_editor_description'), icon: PlaySquare },
     { href: "/url-encoder", label: t('tool_url_encoder_label'), description: t('tool_url_encoder_description'), icon: LinkIcon },
     { href: "/base64-converter", label: t('tool_base64_converter_label'), description: t('tool_base64_converter_description'), icon: Shuffle },
     { href: "/tqto", label: t('tool_tqto_label'), description: t('tool_tqto_description'), icon: Heart },
@@ -26,7 +27,7 @@ export default function Home() {
       <AppSidebar />
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <AppHeader />
-        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+        <main className="flex-1 p-4 sm:px-6 sm:py-0 md:gap-8">
           <ToolContainer
             title={t('home_welcome_title')}
             description={t('home_welcome_description')}
