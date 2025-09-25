@@ -198,9 +198,9 @@ export default function NotebookPage() {
                                     <Button size="icon" variant="ghost" onClick={cancelEditingTitle}><X className="h-4 w-4"/></Button>
                                 </div>
                             ) : (
-                                <div className="flex-grow flex items-center gap-2">
+                                <div className="flex-grow flex items-center gap-2 min-w-0">
                                      <FileText className="h-4 w-4 text-primary shrink-0"/>
-                                     <span className="font-semibold truncate flex-grow">{draft.title}</span>
+                                     <span className="font-semibold truncate flex-1 min-w-0">{draft.title}</span>
                                      <Button size="icon" variant="ghost" onClick={() => startEditingTitle(draft)}><Edit className="h-4 w-4"/></Button>
                                 </div>
                             )}
