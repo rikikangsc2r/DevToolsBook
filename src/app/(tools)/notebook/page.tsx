@@ -297,7 +297,7 @@ export default function NotebookPage() {
                             </AlertDialogHeader>
                             <AlertDialogFooter>
                             <AlertDialogCancel>{t('common_cancel')}</AlertDialogCancel>
-                            <AlertDialogAction onClick={() => deleteDraft(activeDraft.id)}>{t('notebook_delete_button')}</AlertDialogAction>
+                            <AlertDialogAction onClick={() => activeDraft && deleteDraft(activeDraft.id)}>{t('notebook_delete_button')}</AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>

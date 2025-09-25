@@ -213,7 +213,7 @@ export default function CodeEditorPage() {
   };
   
   const shareDraft = () => {
-    if (!blobUrl) return;
+    if (!blobUrl || !activeDraftId) return;
     const blobId = getBlobId(blobUrl);
     if (!blobId) {
        toast({
@@ -308,7 +308,7 @@ export default function CodeEditorPage() {
                 </ScrollArea>
             </div>
 
-            <div className="md:col-span-3 flex flex-col gap-4">
+            <div className="md:col-span-3 flex flex-col gap-4 min-h-0">
             {activeDraft ? (
                 <>
                  <Tabs defaultValue="html" className="w-full flex-grow flex flex-col min-h-0">
@@ -356,7 +356,7 @@ export default function CodeEditorPage() {
                         {status === "loading" && <span className="text-sm text-muted-foreground">{t('notebook_loading')}</span>}
                         {status === "error" && <span className="text-sm text-destructive">{t('notebook_error_state')}</span>}
                         
-                        <Button variant="outline" onClick={shareDraft} disabled={!blobUrl || status !== 'idle'}>
+                        <Button variant="outline" onClick={shareDraft} disabled={!blobUrl || !activeDraftId || status !== 'idle'}>
                             <Share2/> {t('notebook_share_button')}
                         </Button>
                         <Button variant="outline" onClick={downloadDraft} disabled={!activeDraft || status !== 'idle'}>
@@ -377,7 +377,7 @@ export default function CodeEditorPage() {
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
                                 <AlertDialogCancel>{t('common_cancel')}</AlertDialogCancel>
-                                <AlertDialogAction onClick={() => deleteDraft(activeDraft.id)}>{t('notebook_delete_button')}</AlertDialogAction>
+                                <AlertDialogAction onClick={() => activeDraft && deleteDraft(activeDraft.id)}>{t('notebook_delete_button')}</AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>

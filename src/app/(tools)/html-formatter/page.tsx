@@ -32,6 +32,7 @@ export default function HtmlFormatterPage() {
   };
   
   const formatHtml = useCallback(async () => {
+    if (!input) return;
     try {
       const formatted = await prettier.format(input, {
         parser: "html",
@@ -50,7 +51,7 @@ export default function HtmlFormatterPage() {
   }, [input, t, toast]);
 
   const validateHtml = useCallback(() => {
-    if(typeof window === 'undefined') return;
+    if(typeof window === 'undefined' || !input) return;
     const parser = new DOMParser();
     const doc = parser.parseFromString(input, "application/xml");
     const errorNode = doc.querySelector("parsererror");
@@ -66,7 +67,6 @@ export default function HtmlFormatterPage() {
         message: t('html_validation_success_message'),
       });
     }
-     setTimeout(() => setValidationResult(null), 8000);
   }, [input, t]);
 
   useEffect(() => {
@@ -128,3 +128,5 @@ export default function HtmlFormatterPage() {
     </ToolContainer>
   );
 }
+
+    
