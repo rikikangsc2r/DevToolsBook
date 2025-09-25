@@ -6,11 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { ToolContainer } from "@/components/tool-container";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRightLeft } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function UrlEncoderPage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleEncode = () => {
     if (!input) return;
@@ -19,8 +21,8 @@ export default function UrlEncoderPage() {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Encoding Error",
-        description: "Could not encode the provided input.",
+        title: t('url_encode_error_title'),
+        description: t('url_encode_error_desc'),
       });
     }
   };
@@ -32,8 +34,8 @@ export default function UrlEncoderPage() {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Decoding Error",
-        description: "Invalid URL component. Please check your input.",
+        title: t('url_decode_error_title'),
+        description: t('url_decode_error_desc'),
       });
     }
   };
@@ -45,34 +47,34 @@ export default function UrlEncoderPage() {
 
   return (
     <ToolContainer
-      title="URL Encoder / Decoder"
-      description="Encode or decode strings to be URL-safe."
+      title={t('tool_url_encoder_label')}
+      description={t('tool_url_encoder_description')}
     >
       <div className="grid gap-4">
         <div className="flex flex-col gap-2">
-          <label htmlFor="input-textarea" className="font-medium">Input</label>
+          <label htmlFor="input-textarea" className="font-medium">{t('common_input')}</label>
           <Textarea
             id="input-textarea"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter string to encode or decode... e.g. hello world!"
+            placeholder={t('url_input_placeholder')}
             className="min-h-[200px] font-code"
           />
         </div>
         <div className="flex items-center justify-center gap-2">
-          <Button onClick={handleEncode}>Encode</Button>
-          <Button variant="outline" onClick={handleSwap} size="icon" aria-label="Swap input and output">
+          <Button onClick={handleEncode}>{t('common_encode')}</Button>
+          <Button variant="outline" onClick={handleSwap} size="icon" aria-label={t('common_swap')}>
             <ArrowRightLeft className="h-4 w-4" />
           </Button>
-          <Button onClick={handleDecode}>Decode</Button>
+          <Button onClick={handleDecode}>{t('common_decode')}</Button>
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="output-textarea" className="font-medium">Output</label>
+          <label htmlFor="output-textarea" className="font-medium">{t('common_output')}</label>
           <Textarea
             id="output-textarea"
             value={output}
             readOnly
-            placeholder="Result..."
+            placeholder={t('common_result')}
             className="min-h-[200px] font-code bg-muted/50"
           />
         </div>

@@ -1,28 +1,38 @@
+"use client";
+
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ToolContainer } from "@/components/tool-container";
 import { Code, FileLock, Link as LinkIcon, Shuffle } from "lucide-react";
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const tools = [
-  { href: "/javascript-obfuscator", label: "JS Obfuscator", description: "Lindungi dan kurangi ukuran kode JavaScript Anda.", icon: FileLock },
-  { href: "/html-formatter", label: "HTML Formatter", description: "Rapikan dan validasi markup HTML Anda.", icon: Code },
-  { href: "/url-encoder", label: "URL Encoder/Decoder", description: "Encode atau decode string agar aman untuk URL.", icon: LinkIcon },
-  { href: "/base64-converter", label: "Base64 Converter", description: "Encode dan decode data menggunakan Base64, dengan dukungan UTF-8.", icon: Shuffle },
-];
+import { useLanguage } from "@/hooks/use-language";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const { t, setLanguage, language } = useLanguage();
+
+  const tools = [
+    { href: "/javascript-obfuscator", label: t('tool_js_obfuscator_label'), description: t('tool_js_obfuscator_description'), icon: FileLock },
+    { href: "/html-formatter", label: t('tool_html_formatter_label'), description: t('tool_html_formatter_description'), icon: Code },
+    { href: "/url-encoder", label: t('tool_url_encoder_label'), description: t('tool_url_encoder_description'), icon: LinkIcon },
+    { href: "/base64-converter", label: t('tool_base64_converter_label'), description: t('tool_base64_converter_description'), icon: Shuffle },
+  ];
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <AppSidebar />
-      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+      <div className="flex flex-col sm:py-4 sm:pl-14">
         <AppHeader />
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <ToolContainer
-            title="Selamat Datang di DevToolbox"
-            description="Koleksi alat penting untuk pengembang web."
+            title={t('home_welcome_title')}
+            description={t('home_welcome_description')}
           >
+            <div className="mb-8 flex justify-center gap-2">
+              <Button variant={language === 'id' ? 'default' : 'outline'} onClick={() => setLanguage('id')}>Indonesia</Button>
+              <Button variant={language === 'en' ? 'default' : 'outline'} onClick={() => setLanguage('en')}>English</Button>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {tools.map((tool) => (
                 <Link href={tool.href} key={tool.href} className="block group">

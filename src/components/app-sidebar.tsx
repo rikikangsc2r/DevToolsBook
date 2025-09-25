@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Code, FileLock, Link as LinkIcon, Shuffle, TerminalSquare, Home } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
 
 import { cn } from "@/lib/utils";
 import {
@@ -11,17 +12,26 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { TranslationKey } from "@/lib/language";
 
-export const navItems = [
-  { href: "/", label: "Beranda", icon: Home },
-  { href: "/javascript-obfuscator", label: "JS Obfuscator", icon: FileLock },
-  { href: "/html-formatter", label: "HTML Formatter", icon: Code },
-  { href: "/url-encoder", label: "URL Encoder/Decoder", icon: LinkIcon },
-  { href: "/base64-converter", label: "Base64 Converter", icon: Shuffle },
+
+type NavItem = {
+    href: string;
+    label: TranslationKey;
+    icon: React.ElementType;
+}
+
+export const navItems: NavItem[] = [
+  { href: "/", label: "sidebar_home", icon: Home },
+  { href: "/javascript-obfuscator", label: "sidebar_js_obfuscator", icon: FileLock },
+  { href: "/html-formatter", label: "sidebar_html_formatter", icon: Code },
+  { href: "/url-encoder", label: "sidebar_url_encoder", icon: LinkIcon },
+  { href: "/base64-converter", label: "sidebar_base64_converter", icon: Shuffle },
 ];
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-card sm:flex">
@@ -45,10 +55,10 @@ export function AppSidebar() {
                   )}
                 >
                   <item.icon className="h-5 w-5" />
-                  <span className="sr-only">{item.label}</span>
+                  <span className="sr-only">{t(item.label)}</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">{item.label}</TooltipContent>
+              <TooltipContent side="right">{t(item.label)}</TooltipContent>
             </Tooltip>
           ))}
         </nav>

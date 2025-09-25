@@ -1,9 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
 import { PanelLeft, TerminalSquare } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -15,21 +13,25 @@ import {
 import { navItems } from "@/components/app-sidebar";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/hooks/use-language";
+
 
 export function AppHeader() {
   const pathname = usePathname();
+  const { t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline" className="sm:hidden">
             <PanelLeft className="h-5 w-5" />
-            <span className="sr-only">Buka Menu</span>
+            <span className="sr-only">{t('header_open_menu')}</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="sm:max-w-xs">
-          <SheetHeader>
-            <SheetTitle className="sr-only">Menu Navigasi</SheetTitle>
+           <SheetHeader>
+            <SheetTitle className="sr-only">{t('header_nav_menu')}</SheetTitle>
           </SheetHeader>
           <nav className="grid gap-6 text-lg font-medium">
             <Link
@@ -49,7 +51,7 @@ export function AppHeader() {
                 )}
               >
                 <item.icon className="h-5 w-5" />
-                {item.label}
+                {t(item.label as any)}
               </Link>
             ))}
           </nav>

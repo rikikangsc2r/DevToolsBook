@@ -7,6 +7,7 @@ import { ToolContainer } from "@/components/tool-container";
 import { useToast } from "@/hooks/use-toast";
 import { Copy, Check, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useLanguage } from "@/hooks/use-language";
 
 type ValidationResult = {
   isValid: boolean;
@@ -17,6 +18,7 @@ export default function HtmlFormatterPage() {
   const [input, setInput] = useState("<!DOCTYPE html><html><head><title>Test</title></head><body><h1>Hello</h1><p>World</p></body></html>");
   const [output, setOutput] = useState("");
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [validationResult, setValidationResult] = useState<ValidationResult>(null);
 
@@ -52,8 +54,8 @@ export default function HtmlFormatterPage() {
     } catch(e) {
       toast({
         variant: "destructive",
-        title: "Formatting Error",
-        description: "Could not format the HTML. The input may contain syntax errors.",
+        title: t('html_format_error_title'),
+        description: t('html_format_error_desc'),
       });
     }
   };
@@ -67,12 +69,12 @@ export default function HtmlFormatterPage() {
     if (errorNode) {
       setValidationResult({
         isValid: false,
-        message: "Validation failed: " + errorNode.textContent?.split('\n')[1],
+        message: t('html_validation_fail_message') + " " + errorNode.textContent?.split('\n')[1],
       });
     } else {
       setValidationResult({
         isValid: true,
-        message: "HTML appears to be well-formed.",
+        message: t('html_validation_success_message'),
       });
     }
      setTimeout(() => setValidationResult(null), 8000);
@@ -80,27 +82,27 @@ export default function HtmlFormatterPage() {
 
   return (
     <ToolContainer
-      title="HTML Formatter / Validator"
-      description="Tidy up and validate your HTML markup."
+      title={t('tool_html_formatter_label')}
+      description={t('tool_html_formatter_description')}
     >
       <div className="grid md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
-          <label htmlFor="input-textarea" className="font-medium">Input HTML</label>
+          <label htmlFor="input-textarea" className="font-medium">{t('html_input_label')}</label>
           <Textarea
             id="input-textarea"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter HTML code here..."
+            placeholder={t('html_input_placeholder')}
             className="min-h-[300px] font-code text-sm"
           />
         </div>
         <div className="flex flex-col gap-2 relative">
-          <label htmlFor="output-textarea" className="font-medium">Formatted HTML</label>
+          <label htmlFor="output-textarea" className="font-medium">{t('html_output_label')}</label>
           <Textarea
             id="output-textarea"
             value={output}
             readOnly
-            placeholder="Formatted HTML will appear here..."
+            placeholder={t('html_output_placeholder')}
             className="min-h-[300px] font-code text-sm bg-muted/50"
           />
           {output && (
@@ -109,7 +111,7 @@ export default function HtmlFormatterPage() {
               size="icon"
               className="absolute top-8 right-2 h-8 w-8"
               onClick={handleCopy}
-              aria-label="Copy output"
+              aria-label={t('common_copy_output')}
             >
               {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
             </Button>
@@ -117,13 +119,13 @@ export default function HtmlFormatterPage() {
         </div>
       </div>
       <div className="flex items-center justify-center gap-4 mt-6">
-        <Button onClick={formatHtml}>Format</Button>
-        <Button onClick={validateHtml} variant="outline">Validate</Button>
+        <Button onClick={formatHtml}>{t('common_format')}</Button>
+        <Button onClick={validateHtml} variant="outline">{t('common_validate')}</Button>
       </div>
       {validationResult && (
         <Alert variant={validationResult.isValid ? 'default' : 'destructive'} className="mt-4">
             {validationResult.isValid ? <ShieldCheck className="h-4 w-4" /> : <ShieldAlert className="h-4 w-4" />}
-            <AlertTitle>{validationResult.isValid ? 'Validation Successful' : 'Validation Failed'}</AlertTitle>
+            <AlertTitle>{validationResult.isValid ? t('html_validation_success_title') : t('html_validation_fail_title')}</AlertTitle>
             <AlertDescription>{validationResult.message}</AlertDescription>
         </Alert>
       )}
