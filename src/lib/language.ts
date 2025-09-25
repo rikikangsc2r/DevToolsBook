@@ -22,6 +22,7 @@ export const translations = {
   "sidebar_html_formatter": { "en": "HTML Formatter", "id": "HTML Formatter" },
   "sidebar_url_encoder": { "en": "URL Encoder/Decoder", "id": "URL Encoder/Decoder" },
   "sidebar_base64_converter": { "en": "Base64 Converter", "id": "Base64 Converter" },
+  "sidebar_notebook": { "en": "Notebook", "id": "Buku Catatan" },
 
   // Home Page
   "home_welcome_title": { "en": "Welcome to DevToolbox", "id": "Selamat Datang di DevToolbox" },
@@ -36,6 +37,8 @@ export const translations = {
   "tool_url_encoder_description": { "en": "Encode or decode strings to be URL-safe.", "id": "Encode atau decode string agar aman untuk URL." },
   "tool_base64_converter_label": { "en": "Base64 Converter", "id": "Base64 Converter" },
   "tool_base64_converter_description": { "en": "Encode and decode data using Base64, with UTF-8 support.", "id": "Encode dan decode data menggunakan Base64, dengan dukungan UTF-8." },
+  "tool_notebook_label": { "en": "Notebook", "id": "Buku Catatan" },
+  "tool_notebook_description": { "en": "A simple notebook to jot down notes, saved online.", "id": "Buku catatan sederhana untuk mencatat, disimpan secara online." },
 
   // Base64 Converter Page
   "base64_input_placeholder": { "en": "Enter data to convert...", "id": "Masukkan data untuk dikonversi..." },
@@ -83,7 +86,23 @@ export const translations = {
   "obfuscator_options_structure": { "en": "Code Structure", "id": "Struktur Kode" },
   "obfuscator_option_flattening": { "en": "Control Flow Flattening", "id": "Perataan Alur Kontrol" },
   "obfuscator_option_dead_code": { "en": "Dead Code Injection", "id": "Injeksi Kode Mati" },
-  "obfuscator_button_obfuscate": { "en": "Obfuscate", "id": "Obfuscate" }
+  "obfuscator_button_obfuscate": { "en": "Obfuscate", "id": "Obfuscate" },
+
+  // Notebook Page
+  "notebook_placeholder": { "en": "Start typing your notes here...", "id": "Mulai ketik catatan Anda di sini..." },
+  "notebook_initial_content": { "en": "# My Notebook\n\nThis is your personal notebook. Your notes are saved automatically online.", "id": "# Buku Catatan Saya\n\nIni adalah buku catatan pribadi Anda. Catatan Anda disimpan secara otomatis secara online." },
+  "notebook_save_button": { "en": "Save", "id": "Simpan" },
+  "notebook_loading": { "en": "Loading notebook...", "id": "Memuat buku catatan..." },
+  "notebook_error_state": { "en": "Connection error", "id": "Galat koneksi" },
+  "notebook_save_success_title": { "en": "Saved!", "id": "Tersimpan!" },
+  "notebook_save_success_desc": { "en": "Your notes have been saved successfully.", "id": "Catatan Anda telah berhasil disimpan." },
+  "notebook_save_error_title": { "en": "Save Error", "id": "Galat Penyimpanan" },
+  "notebook_save_error_desc": { "en": "Could not save your notes. Please check your connection.", "id": "Tidak dapat menyimpan catatan Anda. Silakan periksa koneksi Anda." },
+  "notebook_load_error_title": { "en": "Load Error", "id": "Galat Pemuatan" },
+  "notebook_load_error_desc": { "en": "Could not load or create a notebook.", "id": "Tidak dapat memuat atau membuat buku catatan." },
+  "notebook_create_blob_error": { "en": "Failed to get location header from new blob", "id": "Gagal mendapatkan header lokasi dari blob baru" },
+  "notebook_recreated_title": { "en": "Notebook Restored", "id": "Buku Catatan Dipulihkan" },
+  "notebook_recreated_desc": { "en": "Your previous notebook was invalid, so a new one was created.", "id": "Buku catatan Anda sebelumnya tidak valid, jadi yang baru telah dibuat." }
 };
 
 export type TranslationKey = keyof typeof translations;

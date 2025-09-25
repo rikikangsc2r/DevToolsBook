@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Code, FileLock, Link as LinkIcon, Shuffle, TerminalSquare, Home } from "lucide-react";
+import { Code, FileLock, Link as LinkIcon, Shuffle, TerminalSquare, Home, Book } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ type NavItem = {
 
 export const navItems: NavItem[] = [
   { href: "/", label: "sidebar_home", icon: Home },
+  { href: "/notebook", label: "sidebar_notebook", icon: Book },
   { href: "/javascript-obfuscator", label: "sidebar_js_obfuscator", icon: FileLock },
   { href: "/html-formatter", label: "sidebar_html_formatter", icon: Code },
   { href: "/url-encoder", label: "sidebar_url_encoder", icon: LinkIcon },

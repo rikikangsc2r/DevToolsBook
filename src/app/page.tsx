@@ -3,7 +3,7 @@
 import { AppHeader } from "@/components/app-header";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ToolContainer } from "@/components/tool-container";
-import { Code, FileLock, Link as LinkIcon, Shuffle } from "lucide-react";
+import { Code, FileLock, Link as LinkIcon, Shuffle, Book } from "lucide-react";
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
@@ -13,6 +13,7 @@ export default function Home() {
   const { t, setLanguage, language } = useLanguage();
 
   const tools = [
+    { href: "/notebook", label: t('tool_notebook_label'), description: t('tool_notebook_description'), icon: Book },
     { href: "/javascript-obfuscator", label: t('tool_js_obfuscator_label'), description: t('tool_js_obfuscator_description'), icon: FileLock },
     { href: "/html-formatter", label: t('tool_html_formatter_label'), description: t('tool_html_formatter_description'), icon: Code },
     { href: "/url-encoder", label: t('tool_url_encoder_label'), description: t('tool_url_encoder_description'), icon: LinkIcon },
@@ -22,7 +23,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <AppSidebar />
-      <div className="flex flex-col sm:py-4 sm:pl-14">
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
         <AppHeader />
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <ToolContainer
