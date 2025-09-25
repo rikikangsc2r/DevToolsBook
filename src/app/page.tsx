@@ -1,7 +1,7 @@
 "use client";
 
-import { AppHeader } from "@/components/app-header";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppNav } from "@/components/app-nav";
+import { Sidebar, SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ToolContainer } from "@/components/tool-container";
 import { Code, FileLock, Link as LinkIcon, Shuffle, Book, Heart, PlaySquare } from "lucide-react";
 import Link from 'next/link';
@@ -23,10 +23,11 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <AppSidebar />
-      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <AppHeader />
+    <SidebarProvider>
+      <Sidebar>
+        <AppNav />
+      </Sidebar>
+      <SidebarInset>
         <main className="flex-1 p-4 sm:px-6 sm:py-0 md:gap-8">
           <ToolContainer
             title={t('home_welcome_title')}
@@ -53,7 +54,7 @@ export default function Home() {
             </div>
           </ToolContainer>
         </main>
-      </div>
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
