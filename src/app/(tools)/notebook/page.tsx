@@ -7,7 +7,7 @@ import { ToolContainer } from "@/components/tool-container";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
 import { createJsonBlob, getJsonBlob, updateJsonBlob } from "@/lib/jsonblob";
-import { Save, Loader, AlertTriangle, Plus, Trash2, Download, FileText, X, Edit, Check, Share2 } from "lucide-react";
+import { Save, Loader, Plus, Trash2, Download, FileText, X, Edit, Check, Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
@@ -126,7 +126,7 @@ export default function NotebookPage() {
         description: t('notebook_save_success_desc'),
       });
       setTimeout(() => setStatus("idle"), 1000);
-    } catch (error) {
+    } catch {
       setStatus("error");
       toast({
         variant: "destructive",

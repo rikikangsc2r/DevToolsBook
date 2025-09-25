@@ -1,6 +1,6 @@
 const API_URL = "https://jsonblob.com/api/jsonBlob";
 
-export async function createJsonBlob(data: any): Promise<Response> {
+export async function createJsonBlob(data: unknown): Promise<Response> {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -17,7 +17,7 @@ export async function createJsonBlob(data: any): Promise<Response> {
   return response;
 }
 
-export async function getJsonBlob(id: string): Promise<any> {
+export async function getJsonBlob(id: string): Promise<unknown> {
     const response = await fetch(`${API_URL}/${id}`, {
         method: 'GET',
         headers: {
@@ -32,7 +32,7 @@ export async function getJsonBlob(id: string): Promise<any> {
     return response.json();
 }
 
-export async function updateJsonBlob(id: string, data: any): Promise<any> {
+export async function updateJsonBlob(id: string, data: unknown): Promise<unknown> {
     const response = await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
         headers: {

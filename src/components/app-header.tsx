@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/hooks/use-language";
 import { useState } from "react";
+import { TranslationKeys } from "@/types/language";
 
 
 export function AppHeader() {
@@ -61,7 +62,7 @@ export function AppHeader() {
                 )}
               >
                 <item.icon className="h-5 w-5" />
-                {t(item.label as any)}
+                {t(item.label as TranslationKeys)}
               </Link>
             ))}
           </nav>

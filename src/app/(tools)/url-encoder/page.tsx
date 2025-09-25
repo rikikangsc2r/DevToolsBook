@@ -18,7 +18,7 @@ export default function UrlEncoderPage() {
     if (!input) return;
     try {
       setOutput(encodeURIComponent(input));
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: t('url_encode_error_title'),
@@ -31,7 +31,7 @@ export default function UrlEncoderPage() {
     if (!input) return;
     try {
       setOutput(decodeURIComponent(input));
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: t('url_decode_error_title'),

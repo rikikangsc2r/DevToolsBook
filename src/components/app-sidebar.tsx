@@ -12,12 +12,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { TranslationKey } from "@/lib/language";
+import { TranslationKeys } from "@/types/language";
 
 
 type NavItem = {
     href: string;
-    label: TranslationKey;
+    label: TranslationKeys;
     icon: React.ElementType;
     external?: boolean;
 }
