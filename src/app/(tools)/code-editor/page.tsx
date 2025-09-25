@@ -67,7 +67,7 @@ export default function CodeEditorPage() {
                     value={jsCode}
                     onChange={(e) => setJsCode(e.target.value)}
                     placeholder="JavaScript"
-                    className="min-h-[300px] font-code text-sm bg-muted-50"
+                    className="min-h-[300px] font-code text-sm bg-muted/50"
                 />
             </TabsContent>
         </Tabs>
