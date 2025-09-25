@@ -8,6 +8,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Copy, Check, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useLanguage } from "@/hooks/use-language";
+import prettier from "prettier/standalone";
+import htmlParser from "prettier/plugins/html";
+
 
 type ValidationResult = {
   isValid: boolean;
@@ -28,34 +31,20 @@ export default function HtmlFormatterPage() {
     setTimeout(() => setCopied(false), 2000);
   };
   
-  const formatHtml = () => {
+  const formatHtml = async () => {
     try {
-      let indent = 0;
-      const tab = '  ';
-      const formatted = input
-        .replace(/>\s*</g, '>\n<')
-        .split('\n')
-        .map(line => line.trim())
-        .filter(line => line.length > 0)
-        .map(line => {
-          let indentation = indent;
-          if (line.startsWith('</')) {
-            indentation = Math.max(0, indent - 1);
-            indent = Math.max(0, indent - 1);
-          }
-          const indentedLine = tab.repeat(indentation) + line;
-          if (line.startsWith('<') && !line.startsWith('</') && !line.endsWith('/>') && !line.startsWith('<!')) {
-            indent++;
-          }
-          return indentedLine;
-        })
-        .join('\n');
+      const formatted = await prettier.format(input, {
+        parser: "html",
+        plugins: [htmlParser],
+        printWidth: 80,
+        tabWidth: 2,
+      });
       setOutput(formatted);
-    } catch(e) {
+    } catch(e: any) {
       toast({
         variant: "destructive",
         title: t('html_format_error_title'),
-        description: t('html_format_error_desc'),
+        description: e.message || t('html_format_error_desc'),
       });
     }
   };
