@@ -59,12 +59,12 @@ export default function Base64ConverterPage() {
             className="min-h-[200px] font-code"
           />
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <Button onClick={handleEncode}>Encode to Base64</Button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+          <Button onClick={handleEncode}>Encode</Button>
           <Button variant="outline" onClick={handleSwap} size="icon" aria-label="Swap input and output">
             <ArrowRightLeft className="h-4 w-4" />
           </Button>
-          <Button onClick={handleDecode}>Decode from Base64</Button>
+          <Button onClick={handleDecode}>Decode</Button>
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="output-textarea" className="font-medium">Output</label>
