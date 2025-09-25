@@ -90,7 +90,7 @@ export default function NotebookPage() {
     initialize();
   }, [initialize]);
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     if (!blobUrl || !activeDraft) return;
     setStatus("saving");
     try {
@@ -108,7 +108,7 @@ export default function NotebookPage() {
         description: t('notebook_save_error_desc'),
       });
     }
-  };
+  }, [blobUrl, activeDraft, drafts, t, toast]);
 
   const createNewDraft = () => {
     const newDraft: Draft = {

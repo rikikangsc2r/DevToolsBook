@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ToolContainer } from "@/components/tool-container";
@@ -31,7 +31,7 @@ export default function HtmlFormatterPage() {
     setTimeout(() => setCopied(false), 2000);
   };
   
-  const formatHtml = async () => {
+  const formatHtml = useCallback(async () => {
     try {
       const formatted = await prettier.format(input, {
         parser: "html",
@@ -47,9 +47,9 @@ export default function HtmlFormatterPage() {
         description: e.message || t('html_format_error_desc'),
       });
     }
-  };
+  }, [input, t, toast]);
 
-  const validateHtml = () => {
+  const validateHtml = useCallback(() => {
     if(typeof window === 'undefined') return;
     const parser = new DOMParser();
     const doc = parser.parseFromString(input, "application/xml");
@@ -67,7 +67,14 @@ export default function HtmlFormatterPage() {
       });
     }
      setTimeout(() => setValidationResult(null), 8000);
-  };
+  }, [input, t]);
+
+  useEffect(() => {
+    if (validationResult) {
+      const timer = setTimeout(() => setValidationResult(null), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [validationResult]);
 
   return (
     <ToolContainer
