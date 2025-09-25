@@ -18,7 +18,7 @@ export default function Base64ConverterPage() {
     if (!input) return;
     try {
       setOutput(btoa(unescape(encodeURIComponent(input))));
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: t('base64_encode_error_title'),
@@ -31,7 +31,7 @@ export default function Base64ConverterPage() {
     if (!input) return;
     try {
       setOutput(decodeURIComponent(escape(atob(input))));
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: t('base64_decode_error_title'),

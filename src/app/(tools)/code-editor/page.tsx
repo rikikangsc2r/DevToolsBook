@@ -135,7 +135,7 @@ export default function CodeEditorPage() {
         description: t('notebook_save_success_desc'),
       });
       setTimeout(() => setStatus("idle"), 1000);
-    } catch (error) {
+    } catch {
       setStatus("error");
       toast({
         variant: "destructive",

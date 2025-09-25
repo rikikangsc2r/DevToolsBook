@@ -31,7 +31,7 @@ export default function JavascriptObfuscatorPage() {
   const [controlFlowFlattening, setControlFlowFlattening] = useState(false);
   const [deadCodeInjection, setDeadCodeInjection] = useState(false);
   const [stringArray, setStringArray] = useState(true);
-  const [stringArrayEncoding, setStringArrayEncoding] = useState<any[]>(['base64']);
+  const [stringArrayEncoding, setStringArrayEncoding] = useState<('base64' | 'rc4')[]>(['base64']);
   const [unicodeEscapeSequence, setUnicodeEscapeSequence] = useState(false);
 
 
@@ -58,11 +58,11 @@ export default function JavascriptObfuscatorPage() {
         title: t('obfuscator_success_title'),
         description: t('obfuscator_success_desc'),
       });
-    } catch (e: any) {
+    } catch (e) {
       toast({
         variant: "destructive",
         title: t('obfuscator_error_title'),
-        description: e.message || t('obfuscator_error_desc'),
+        description: (e as Error).message || t('obfuscator_error_desc'),
       });
     }
   };
@@ -132,8 +132,8 @@ export default function JavascriptObfuscatorPage() {
                         <div className="space-y-2">
                              <Label>{t('obfuscator_option_string_array_encoding')}</Label>
                              <Select
-                                value={stringArrayEncoding[0] || 'none'}
-                                onValueChange={(v) => setStringArrayEncoding(v === 'none' ? [] : [v])}
+                                value={(stringArrayEncoding && stringArrayEncoding[0]) || 'none'}
+                                onValueChange={(v) => setStringArrayEncoding(v === 'none' ? [] : [v as 'base64' | 'rc4'])}
                                 disabled={!stringArray}
                              >
                                 <SelectTrigger>

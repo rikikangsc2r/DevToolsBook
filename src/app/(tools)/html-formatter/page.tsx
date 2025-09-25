@@ -41,11 +41,11 @@ export default function HtmlFormatterPage() {
         tabWidth: 2,
       });
       setOutput(formatted);
-    } catch(e: any) {
+    } catch(e) {
       toast({
         variant: "destructive",
         title: t('html_format_error_title'),
-        description: e.message || t('html_format_error_desc'),
+        description: (e as Error).message || t('html_format_error_desc'),
       });
     }
   }, [input, t, toast]);
