@@ -52,10 +52,12 @@ export function AppHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 onClick={handleLinkClick}
                 className={cn(
                     "flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground",
-                    pathname === item.href && "text-foreground"
+                    !item.external && pathname === item.href && "text-foreground"
                 )}
               >
                 <item.icon className="h-5 w-5" />

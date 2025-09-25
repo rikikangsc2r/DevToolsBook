@@ -27,6 +27,7 @@ export const translations = {
   "sidebar_notebook": { "en": "Notebook", "id": "Buku Catatan" },
   "sidebar_tqto": { "en": "TQTO", "id": "TQTO" },
   "sidebar_code_editor": { "en": "Code Editor", "id": "Editor Kode" },
+  "sidebar_feature_request": { "en": "Request a Feature", "id": "Minta Fitur" },
 
   // Home Page
   "home_welcome_title": { "en": "Welcome to DevToolbox", "id": "Selamat Datang di DevToolbox" },
