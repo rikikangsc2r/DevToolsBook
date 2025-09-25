@@ -12,6 +12,7 @@ export const translations = {
   "common_validate": { "en": "Validate", "id": "Validasi" },
   "common_none": { "en": "None", "id": "Tidak ada" },
   "common_cancel": { "en": "Cancel", "id": "Batal" },
+  "common_last_updated": { "en": "Last Updated", "id": "Terakhir Diperbarui" },
 
   // Header
   "header_open_menu": { "en": "Open Menu", "id": "Buka Menu" },
@@ -45,7 +46,7 @@ export const translations = {
   "tool_tqto_label": { "en": "TQTO", "id": "TQTO" },
   "tool_tqto_description": { "en": "A special thanks to the one who made this possible.", "id": "Terima kasih khusus untuk yang telah mewujudkan ini." },
   "tool_code_editor_label": { "en": "Code Editor", "id": "Editor Kode" },
-  "tool_code_editor_description": { "en": "A simple HTML, CSS, and JS editor with live preview.", "id": "Editor HTML, CSS, dan JS sederhana dengan pratinjau langsung." },
+  "tool_code_editor_description": { "en": "A simple HTML, CSS, and JS editor with live preview and sharing.", "id": "Editor HTML, CSS, dan JS sederhana dengan pratinjau langsung dan fitur berbagi." },
 
   // Base64 Converter Page
   "base64_input_placeholder": { "en": "Enter data to convert...", "id": "Masukkan data untuk dikonversi..." },
@@ -101,17 +102,17 @@ export const translations = {
   "notebook_initial_draft_title": { "en": "My First Note", "id": "Catatan Pertama Saya" },
   "notebook_new_draft_title": { "en": "New Draft", "id": "Draf Baru" },
   "notebook_save_button": { "en": "Save", "id": "Simpan" },
-  "notebook_loading": { "en": "Loading notebook...", "id": "Memuat buku catatan..." },
+  "notebook_loading": { "en": "Loading...", "id": "Memuat..." },
   "notebook_error_state": { "en": "Connection error", "id": "Galat koneksi" },
   "notebook_save_success_title": { "en": "Saved!", "id": "Tersimpan!" },
-  "notebook_save_success_desc": { "en": "Your notes have been saved successfully.", "id": "Catatan Anda telah berhasil disimpan." },
+  "notebook_save_success_desc": { "en": "Your work has been saved successfully.", "id": "Pekerjaan Anda telah berhasil disimpan." },
   "notebook_save_error_title": { "en": "Save Error", "id": "Galat Penyimpanan" },
-  "notebook_save_error_desc": { "en": "Could not save your notes. Please check your connection.", "id": "Tidak dapat menyimpan catatan Anda. Silakan periksa koneksi Anda." },
+  "notebook_save_error_desc": { "en": "Could not save your work. Please check your connection.", "id": "Tidak dapat menyimpan pekerjaan Anda. Silakan periksa koneksi Anda." },
   "notebook_load_error_title": { "en": "Load Error", "id": "Galat Pemuatan" },
-  "notebook_load_error_desc": { "en": "Could not load or create a notebook.", "id": "Tidak dapat memuat atau membuat buku catatan." },
+  "notebook_load_error_desc": { "en": "Could not load or create a workspace.", "id": "Tidak dapat memuat atau membuat ruang kerja." },
   "notebook_create_blob_error": { "en": "Failed to get location header from new blob", "id": "Gagal mendapatkan header lokasi dari blob baru" },
-  "notebook_recreated_title": { "en": "Notebook Restored", "id": "Buku Catatan Dipulihkan" },
-  "notebook_recreated_desc": { "en": "Your previous notebook was invalid, so a new one was created.", "id": "Buku catatan Anda sebelumnya tidak valid, jadi yang baru telah dibuat." },
+  "notebook_recreated_title": { "en": "Workspace Restored", "id": "Ruang Kerja Dipulihkan" },
+  "notebook_recreated_desc": { "en": "Your previous workspace was invalid, so a new one was created.", "id": "Ruang kerja Anda sebelumnya tidak valid, jadi yang baru telah dibuat." },
   "notebook_new_draft_button": { "en": "New Draft", "id": "Draf Baru" },
   "notebook_download_button": { "en": "Download", "id": "Unduh" },
   "notebook_delete_button": { "en": "Delete", "id": "Hapus" },
@@ -121,7 +122,7 @@ export const translations = {
   "notebook_title_empty_error": { "en": "Title cannot be empty.", "id": "Judul tidak boleh kosong." },
   "notebook_share_button": { "en": "Share", "id": "Bagikan" },
   "notebook_share_success_title": { "en": "URL Copied!", "id": "URL Disalin!" },
-  "notebook_share_success_desc": { "en": "The shareable notebook URL has been copied to your clipboard.", "id": "URL buku catatan yang dapat dibagikan telah disalin ke papan klip Anda." },
+  "notebook_share_success_desc": { "en": "The shareable URL has been copied to your clipboard.", "id": "URL yang dapat dibagikan telah disalin ke papan klip Anda." },
   "notebook_share_error_title": { "en": "Share Error", "id": "Galat Berbagi" },
   "notebook_share_error_desc": { "en": "Could not generate a shareable URL.", "id": "Tidak dapat membuat URL yang dapat dibagikan." },
 
@@ -135,6 +136,13 @@ export const translations = {
 
   // Code Editor Page
   "code_editor_run_button": { "en": "Run", "id": "Jalankan" },
+  "code_editor_initial_draft_title": { "en": "My First Pen", "id": "Pen Pertama Saya" },
+  "code_editor_view_title": { "en": "Shared Pen", "id": "Pen Bersama" },
+  "code_editor_view_description": { "en": "A read-only view of a shared code pen.", "id": "Tampilan hanya-baca dari sebuah pen kode yang dibagikan." },
+  "code_editor_view_load_error_title": { "en": "Error Loading Pen", "id": "Galat Memuat Pen" },
+  "code_editor_view_load_error_desc": { "en": "The requested pen could not be found or has been deleted.", "id": "Pen yang diminta tidak dapat ditemukan atau telah dihapus." },
+  "code_editor_view_empty": { "en": "This pen is empty.", "id": "Pen ini kosong." },
+  "code_editor_view_back_button": { "en": "Back to Editor", "id": "Kembali ke Editor" },
   
   // TQTO Page
   "tqto_message_line1": { "en": "This application was lovingly crafted for", "id": "Aplikasi ini dibuat dengan penuh cinta untuk" },
@@ -142,3 +150,5 @@ export const translations = {
 };
 
 export type TranslationKey = keyof typeof translations;
+
+    

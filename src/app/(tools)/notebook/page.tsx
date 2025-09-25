@@ -56,14 +56,14 @@ export default function NotebookPage() {
         const loadedDrafts = data.drafts || [];
         setDrafts(loadedDrafts);
         if (loadedDrafts.length > 0) {
-          setActiveDraftId(loadedDrafts[0].id);
+          // Select the most recently updated draft
+          setActiveDraftId(loadedDrafts.sort((a,b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())[0].id);
         } else {
            const initialDraft: Draft = { id: crypto.randomUUID(), title: t('notebook_initial_draft_title'), content: t('notebook_initial_content'), updatedAt: new Date().toISOString() };
            setDrafts([initialDraft]);
            setActiveDraftId(initialDraft.id);
         }
         setBlobUrl(storedUrl);
-        setStatus("idle");
       } else {
         const initialDraft: Draft = { id: crypto.randomUUID(), title: t('notebook_initial_draft_title'), content: t('notebook_initial_content'), updatedAt: new Date().toISOString() };
         const newBlob = await createJsonBlob({ drafts: [initialDraft] });
@@ -73,14 +73,12 @@ export default function NotebookPage() {
           setBlobUrl(newUrl);
           setDrafts([initialDraft]);
           setActiveDraftId(initialDraft.id);
-          setStatus("idle");
         } else {
            throw new Error(t('notebook_create_blob_error'));
         }
       }
     } catch (error) {
       console.error("Initialization failed:", error);
-      setStatus("error");
       toast({
           variant: "destructive",
           title: t('notebook_load_error_title'),
@@ -89,19 +87,25 @@ export default function NotebookPage() {
       // If loading fails, create a new one
       localStorage.removeItem(JSONBLOB_URL_KEY);
        const initialDraft: Draft = { id: crypto.randomUUID(), title: t('notebook_initial_draft_title'), content: t('notebook_initial_content'), updatedAt: new Date().toISOString() };
-       const newBlob = await createJsonBlob({ drafts: [initialDraft] });
+       try {
+        const newBlob = await createJsonBlob({ drafts: [initialDraft] });
         const newUrl = newBlob.headers.get("Location");
         if (newUrl) {
           localStorage.setItem(JSONBLOB_URL_KEY, newUrl);
           setBlobUrl(newUrl);
           setDrafts([initialDraft]);
           setActiveDraftId(initialDraft.id);
-          setStatus("idle");
           toast({
             title: t('notebook_recreated_title'),
             description: t('notebook_recreated_desc'),
           });
         }
+       } catch (createError) {
+         console.error("Failed to create new blob after error:", createError);
+         setStatus("error");
+       }
+    } finally {
+      setStatus("idle");
     }
   }, [t, toast, getBlobId]);
 
@@ -148,7 +152,7 @@ export default function NotebookPage() {
     const updatedDrafts = drafts.filter(d => d.id !== draftId);
     setDrafts(updatedDrafts);
     if (activeDraftId === draftId) {
-        setActiveDraftId(updatedDrafts.length > 0 ? updatedDrafts[0].id : null);
+        setActiveDraftId(updatedDrafts.length > 0 ? updatedDrafts.sort((a,b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())[0].id : null);
     }
   };
 
@@ -235,8 +239,8 @@ export default function NotebookPage() {
                             {editingTitleId === draft.id ? (
                                 <div className="flex-grow flex items-center gap-1">
                                     <Input value={tempTitle} onChange={e => setTempTitle(e.target.value)} className="h-8"/>
-                                    <Button size="icon" variant="ghost" onClick={() => saveTitle(draft.id)}><Check className="h-4 w-4"/></Button>
-                                    <Button size="icon" variant="ghost" onClick={cancelEditingTitle}><X className="h-4 w-4"/></Button>
+                                    <Button size="icon" variant="ghost" onClick={(e) => {e.stopPropagation(); saveTitle(draft.id);}}><Check className="h-4 w-4"/></Button>
+                                    <Button size="icon" variant="ghost" onClick={(e) => {e.stopPropagation(); cancelEditingTitle();}}><X className="h-4 w-4"/></Button>
                                 </div>
                             ) : (
                                 <div className="flex-grow min-w-0">
@@ -320,3 +324,5 @@ export default function NotebookPage() {
     </ToolContainer>
   );
 }
+
+    
