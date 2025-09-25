@@ -202,7 +202,7 @@ export default function NotebookPage() {
                                     <div className="flex-grow min-w-0">
                                          <div className="flex items-center gap-2">
                                             <FileText className="h-4 w-4 text-primary shrink-0"/>
-                                            <span className="font-semibold truncate flex-1 min-w-0">{draft.title}</span>
+                                            <span className="font-semibold truncate">{draft.title}</span>
                                          </div>
                                          <p className="text-xs text-muted-foreground mt-1">{format(new Date(draft.updatedAt), 'PPp')}</p>
                                     </div>
